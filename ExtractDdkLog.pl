@@ -3,11 +3,14 @@ use strict;
 use warnings;
 
 open (MYHANDLE, $ARGV[0]) or die ("Can't open myfile: $!");
-open (LOG, ">logfile.txt") || die ("Can't open logfile.txt");
+open (DDK_LOG_HANDLE, ">$ARGV[1]") || die ("Can't open logfile.txt");
 
 while(<MYHANDLE>) {
-	if (/\[+\w*\]+\[+\w*]+/) { print LOG $_; }
+	if (/\[+\w*\]+\[+\w*]+/) { 
+		s/\[+\w*\]+//;
+		print DDK_LOG_HANDLE $_;
+		}
 }
 
 close MYHANDLE;
-close LOG;
+close DDK_LOG_HANDLE;

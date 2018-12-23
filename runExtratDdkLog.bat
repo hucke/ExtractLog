@@ -9,6 +9,6 @@ ECHO.WORK_FOLDER %WORK_FOLDER%
 ECHO.INFILE %INFILE%
 ECHO.OUTFILE %OUTFILE%
 
-perl d:\code\ExtractLog\ExtractDdkLog.pl %INFILE%
+perl d:\code\ExtractLog\ExtractDdkLog.pl %INFILE% %OUTFILE%
 
 PAUSE
