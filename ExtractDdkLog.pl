@@ -2,15 +2,15 @@
 use strict;
 use warnings;
 
-open (MYHANDLE, $ARGV[0]) or die ("Can't open myfile: $!");
-open (DDK_LOG_HANDLE, ">$ARGV[1]") || die ("Can't open logfile.txt");
+open (KERNEL_LOG_HANDLE, $ARGV[0]) or die ("Can't open myfile: $!");
+open (DDK_LOG_HANDLE, ">$ARGV[1]") || die ("Can't open file: $!");
 
-while(<MYHANDLE>) {
-	if (/\[+\w*\]+\[+\w*]+/) { 
-		s/\[+\w*\]+//;
+while(<KERNEL_LOG_HANDLE>) {
+	if (/^<.>\[(.*)\]\[\w*\]/) {
+		s/^<.>\[.*\.\d*\]\[\d*:.*:\d*\]//;
 		print DDK_LOG_HANDLE $_;
-		}
+	}
 }
 
-close MYHANDLE;
+close KERNEL_LOG_HANDLE;
 close DDK_LOG_HANDLE;
