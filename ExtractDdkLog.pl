@@ -6,8 +6,9 @@ open (KERNEL_LOG_HANDLE, $ARGV[0]) or die ("Can't open myfile: $!");
 open (DDK_LOG_HANDLE, ">$ARGV[1]") || die ("Can't open file: $!");
 
 while(<KERNEL_LOG_HANDLE>) {
-	if (/^<.>\[(.*)\]\[\w*\]/) {
-		s/^<.>\[.*\.\d*\]\[\d*:.*:\d*\]//;
+	if (/^<.*>\[(.*)\]\[\w*\]/) {
+#		s/^<.>\[.*\.\d*\]\[\d*:.*:\d*\]//;
+		s/^.{39}//;
 		print DDK_LOG_HANDLE $_;
 	}
 }
